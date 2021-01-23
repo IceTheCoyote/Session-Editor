@@ -3,21 +3,21 @@ session_start();
 
 if(isset($_POST['clear'])) {
 	session_unset();
-	header("Location: ".$_SERVER["PHP_SELF"]);
+	header("Location: ".htmlspecialchars($_SERVER["PHP_SELF"]));
 	exit;
 }
 if(isset($_POST['add'])) {
 	$_SESSION[$_POST['session_name']] = $_POST['session_value'];
-	header("Location: ".$_SERVER["PHP_SELF"]);
+	header("Location: ".htmlspecialchars($_SERVER["PHP_SELF"]));
 	exit;
 }
 if(isset($_POST['remove'])) {
 	unset($_SESSION[$_POST['session_name']]);
-	header("Location: ".$_SERVER["PHP_SELF"]);
+	header("Location: ".htmlspecialchars($_SERVER["PHP_SELF"]));
 	exit;
 }
 
-echo "<form action=\"".$_SERVER["PHP_SELF"]."\" method=\"POST\">";
+echo "<form action=\"".htmlspecialchars($_SERVER["PHP_SELF"])."\" method=\"POST\">";
 
 echo "<br>".var_dump($_SESSION)."<br>";
 echo "<p><b>Add a session value</b></p>";
